@@ -51,6 +51,8 @@ COPY xdebug.ini /usr/local/etc/php/conf.d/
 #COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
 ## Add SSL custom config files
+#COPY ../ssl/ssl-cert-snakeoil.key /etc/ssl/private/
+#COPY ../ssl/ssl-cert-snakeoil.pem /etc/ssl/certs/
 #COPY default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 #COPY ssl-params.conf /etc/apache2/conf-available/ssl-params.conf
 #
