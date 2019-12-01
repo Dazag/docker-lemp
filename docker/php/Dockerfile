@@ -47,23 +47,6 @@ RUN pecl install xdebug \
 COPY php.ini /usr/local/etc/php/conf.d/
 COPY xdebug.ini /usr/local/etc/php/conf.d/
 
-## Add custom vhost
-#COPY site.conf /etc/apache2/sites-enabled/000-default.conf
-
-## Add SSL custom config files
-#COPY ../ssl/ssl-cert-snakeoil.key /etc/ssl/private/
-#COPY ../ssl/ssl-cert-snakeoil.pem /etc/ssl/certs/
-#COPY default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
-#COPY ssl-params.conf /etc/apache2/conf-available/ssl-params.conf
-#
-## Add new custom apache configuration
-#COPY apache2.conf /etc/apache2/apache2.conf
-#
-## Enable apache rewrite
-#RUN a2enmod rewrite
-#
-## Enable apache SSL
-#RUN a2enmod ssl
-#RUN a2enmod headers
-#RUN a2ensite default-ssl
-#RUN a2enconf ssl-params
+#Add 'app' user to docker container
+RUN useradd -rm -d /home/app -s /bin/bash -g root -G sudo -u 1000 app
+USER app

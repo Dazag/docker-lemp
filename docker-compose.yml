@@ -18,7 +18,6 @@ services:
   php:
     container_name: ${LEMP_PHP_NAME}
     build: docker/php
-    user: 1000:1000
     volumes:
       - $PWD:/var/www/html
     working_dir: /var/www/html
@@ -34,7 +33,6 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
-#      - ./docker/mariadb/dump:/docker-entrypoint-initdb.d
       - persistent:/var/lib/mysql
     networks:
       - default
