@@ -33,8 +33,7 @@ RUN apt-get install -y libmagickwand-dev \
     && docker-php-ext-enable imagick
 
 # Configure GD
-RUN docker-php-ext-configure gd --with-png-dir=/usr/include/ \
-    --with-jpeg-dir=/usr/include/ --with-freetype-dir=/usr/include/
+RUN docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql zip opcache gd
