@@ -4,23 +4,11 @@ FROM php:7.4-fpm
 RUN apt-get update && \
     apt-get install -y --no-install-recommends apt-utils git zip libzip-dev unzip nano
 
-# GD extension dependency
-RUN apt-get install -y libpng-dev
-
 # MySQL server
 RUN apt-get install -y default-mysql-client
 
 # Composer
-RUN curl --silent --show-error https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer && \
-    chmod +x /usr/local/bin/composer && \
-    composer --version
-
-# PHPUnit
-RUN curl -fsSL https://phar.phpunit.de/phpunit-6.5.phar -o phpunit-6.5.phar && \
-    mv phpunit-6.5.phar /usr/local/bin/phpunit && \
-    chmod +x /usr/local/bin/phpunit && \
-    phpunit --version
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # php-memcached
 RUN apt-get install -y libmemcached-dev zlib1g-dev \
@@ -33,6 +21,7 @@ RUN apt-get install -y libmagickwand-dev \
     && docker-php-ext-enable imagick
 
 # Configure GD
+RUN apt-get install -y libjpeg-dev libfreetype6-dev libpng-dev
 RUN docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/
 
 # Install PHP extensions
