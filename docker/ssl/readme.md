@@ -30,11 +30,11 @@ The above command will generate your new certification, without you needing to i
 
 `mkcert -CAROOT`
 
-Next, we’ll generate a certificate for our local websites, www.docker.minderest.com and minderest.test with the commands:
+Next, we’ll generate a certificate for our local websites, www.docker.app.com and app.test with the commands:
 
 ```
-cd minderest-web-app/docker/ssl
-mkcert www.docker.minderest.com minderest.test
+cd app-web-app/docker/ssl
+mkcert www.docker.app.com app.test
 # Rename the files to match the configuration
 mv whatever-name-cert.pem local-cert.pem
 mv whatever-name-key.pem local-key.pem
@@ -44,7 +44,7 @@ Build docker again and you should be done!
 `docker-compose up --build`
 
 <a name="staging">
-### How to configure a secure connection _"https"_ against staging (_staigng.local.minderest.com_) 
+### How to configure a secure connection _"https"_ against staging (_staigng.local.app.com_) 
 </a>
 
 If you are using Chrome or Vivaldi:
@@ -52,10 +52,10 @@ If you are using Chrome or Vivaldi:
 * Go to the address bar of the web browser and paste this `chrome://settings/certificates`.
 * Click on Authorities.
 * Click on Import.
-* Select the certificate in this folder named: `staging-minderest-CA.pem`.
+* Select the certificate in this folder named: `staging-app-CA.pem`.
 * Click open and check all the options listed.
 * Click OK.
-* Go to [staging](https://staigng.local.minderest.com) and verify you have a secure connection.
+* Go to [staging](https://staigng.local.app.com) and verify you have a secure connection.
 * DONE!
 
 If you are using Firefox:
