@@ -1,8 +1,8 @@
 version: "3"
 services:
   nginx:
-    container_name: ${LEMP_NGINX_NAME}
-    image: nginx:1.17.6-alpine
+    container_name: ${APP_NAME}_nginx
+    image: nginx:alpine
     volumes:
       - $PWD:/var/www/html
       - $PWD/docker/ssl:/etc/ssl
@@ -14,17 +14,26 @@ services:
       - "443:443"
     depends_on:
       - php
-
   php:
-    container_name: ${LEMP_PHP_NAME}
-    build: docker/php
+    user: '${HOST_USER_ID}:${HOST_GROUP_ID}'
+    container_name: ${APP_NAME}_php
+    build:
+      context: docker/php
+      args:
+        APP_USER_ID: '${HOST_USER_ID}'
+        APP_GROUP_ID: '${HOST_GROUP_ID}'
     volumes:
       - $PWD:/var/www/html
     working_dir: /var/www/html
-
+    environment:
+      APACHE_RUN_USER: '#${HOST_USER_ID}'
+      APACHE_RUN_GROUP: '#${HOST_GROUP_ID}'
+      PHP_IDE_CONFIG: 'serverName=${SERVER_NAME}'
+    depends_on:
+      - db
   db:
-    container_name: ${LEMP_DB_NAME}
-    image: mysql:8.0.18
+    container_name: ${APP_NAME}_db
+    image: mysql:8
     ports:
       - "3306:3306"
     environment:
