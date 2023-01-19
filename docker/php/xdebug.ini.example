@@ -11,7 +11,7 @@ xdebug.discover_client_host = true
 xdebug.client_host = host.docker.internal
 
 # https://xdebug.org/docs/all_settings#client_port
-xdebug.client_port = 9003
+xdebug.client_port = 9362
 
 # https://xdebug.org/docs/all_settings#start_with_request
 xdebug.start_with_request = yes
@@ -21,3 +21,6 @@ xdebug.idekey = docker
 
 # https://xdebug.org/docs/all_settings#cli_color
 xdebug.cli_color = 1
+
+# https://xdebug.org/docs/all_settings#start_upon_error
+#xdebug.start_upon_error = 1
