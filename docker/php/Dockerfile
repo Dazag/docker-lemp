@@ -32,8 +32,8 @@ RUN apt-get install -y libmagickwand-dev \
     && docker-php-ext-enable imagick
 
 # Configure GD
-RUN apt-get install -y libjpeg-dev libfreetype6-dev libpng-dev \
-    && docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/ \
+RUN apt-get install -y libjpeg-dev libfreetype6-dev libpng-dev libwebp-dev \
+    && docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp \
     && docker-php-ext-install gd
 
 # Install xdebug
