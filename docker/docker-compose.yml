@@ -1,4 +1,4 @@
-version: "3"
+version: "3.5"
 services:
   nginx:
     container_name: ${APP_NAME}_nginx
@@ -41,9 +41,11 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - persistent:/var/lib/mysql
-    networks:
-      - default
 
+networks:
+  default:
+    name: ${APP_NAME}_network
+    driver: bridge
 volumes:
   persistent:
     name: ${APP_NAME}_volume
